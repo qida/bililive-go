@@ -22,7 +22,8 @@
     "build": "cross-env CI=true react-scripts build",
     "lint": "eslint src/ --max-warnings 0",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "upgrade-browserslist-db": "npx update-browserslist-db@latest"
   },
   "eslintConfig": {
     "extends": "react-app",

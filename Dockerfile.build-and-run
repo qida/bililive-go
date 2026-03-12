@@ -29,6 +29,10 @@ COPY . .
 
 #配置golang编译环境并进行构建
 RUN go env -w GO111MODULE=on && \
+    cd src/webapp && \
+    yarn install && \
+    yarn upgrade-browserslist-db && \
+    cd .. && \
     make build-web && \
     make
 
