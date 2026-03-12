@@ -33,8 +33,8 @@ RUN go env -w GO111MODULE=on && \
     cd src/webapp && \
     yarn install && \
     npx update-browserslist-db@latest && \
+    yarn build && \
     cd .. && \
-    make build-web && \
     make
 
 RUN sh -c "/build/bin/bililive* --version"
