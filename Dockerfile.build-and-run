@@ -21,9 +21,10 @@ RUN ARCH=$(uname -m) && \
     fi && \
     wget https://nodejs.org/dist/v20.9.0/node-v20.9.0-linux-${NODE_ARCH}.tar.xz && \
     tar Jxvf /build/node-v20.9.0-linux-${NODE_ARCH}.tar.xz && \
-    rm -rf /usr/bin/node /usr/bin/npm && \
+    rm -rf /usr/bin/node /usr/bin/npm /usr/bin/npx && \
     ln -s /build/node-v20.9.0-linux-${NODE_ARCH}/bin/node /usr/bin/node && \
-    ln -s /build/node-v20.9.0-linux-${NODE_ARCH}/bin/npm /usr/bin/npm
+    ln -s /build/node-v20.9.0-linux-${NODE_ARCH}/bin/npm /usr/bin/npm && \
+    ln -s /build/node-v20.9.0-linux-${NODE_ARCH}/bin/npx /usr/bin/npx
 
 COPY . .
 
@@ -31,7 +32,7 @@ COPY . .
 RUN go env -w GO111MODULE=on && \
     cd src/webapp && \
     yarn install && \
-    yarn upgrade-browserslist-db && \
+    npx update-browserslist-db@latest && \
     cd .. && \
     make build-web && \
     make
